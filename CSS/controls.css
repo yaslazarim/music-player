@@ -1,0 +1,17 @@
+.controls{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button{
+    font-size: 1.5em;
+}
+
+.button-navigation{
+    font-size: 3em;
+}
+
+.button-player{
+    font-size: 4em;
+}
