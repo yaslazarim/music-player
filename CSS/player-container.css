@@ -1,7 +1,6 @@
 .player-container{
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 415px;
     color: white;
     padding: 10px;
