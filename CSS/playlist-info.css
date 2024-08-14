@@ -4,4 +4,15 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.song-name{
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.light-color{
+    color: #8B999C;
 }
