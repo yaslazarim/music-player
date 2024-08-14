@@ -1,0 +1,11 @@
+.progress-bar{
+    background-color: #8B999C;
+    height: 2px;
+    width: 100%;
+}
+
+.current-progress{
+    background-color: #fff;
+    height: inherit;
+    width: 50%;
+}
