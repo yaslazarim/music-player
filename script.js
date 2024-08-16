@@ -3,11 +3,13 @@ const artistName = document.querySelector('.artist-name')
 const song = document.querySelector('.audio')
 const cover = document.querySelector('.cover')
 const play = document.querySelector('.button-player')
+const previous = document.querySelector('.previous')
+const next = document.querySelector('.next')
 
 const mockingbird = {
     songName : 'Mockingbird',
     artist : 'Eminem',
-    file : 'mokingbird'
+    file : 'mockingbird'
 }
 
 const saudadesDoTempo = {
@@ -50,4 +52,30 @@ function initializeSong(){
     artistName.innerText = playlist[index].artist;
 }
 
+function previousSong(){
+    if(index === 0){
+        index = playlist.length -1;
+    }
+    else{
+        index -= 1;
+    }
+    initializeSong();
+    playSong();
+}
+
+function nextSong(){
+    if(index === playlist.length -1){
+        index = 0;
+    }
+    else{
+        index += 1;
+    }
+    initializeSong();
+    playSong();
+}
+
+initializeSong();
+
 play.addEventListener('click', playPauseDecider);
+previous.addEventListener('click', previousSong);
+next.addEventListener('click', nextSong)
