@@ -1,9 +1,24 @@
 const songName = document.querySelector('.song-name');
+const artistName = document.querySelector('.artist-name')
 const song = document.querySelector('.audio')
+const cover = document.querySelector('.cover')
 const play = document.querySelector('.button-player')
 
-songName.innerText = 'Mockingnbird';
+const mockingbird = {
+    songName : 'Mockingbird',
+    artist : 'Eminem',
+    file : 'mokingbird'
+}
+
+const saudadesDoTempo = {
+    songName : 'Saudades do tempo',
+    artist : 'Maneva',
+    file : 'saudades-do-tempo'
+}
+
 let isPlaying = false;
+const playlist = [mockingbird, saudadesDoTempo];
+let index = 0;
 
 function playSong(){
     play.querySelector('.bi').classList.remove('bi-play-circle-fill')
