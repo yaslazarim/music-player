@@ -5,7 +5,8 @@
 }
 
 .current-progress{
+    --progress: 0%;
     background-color: #fff;
     height: inherit;
-    width: 50%;
+    width: var(--progress);
 }
