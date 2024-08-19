@@ -10,3 +10,8 @@
     height: inherit;
     width: var(--progress);
 }
+
+.progress-bar-container{
+    padding-bottom: 20px;
+    cursor: pointer;
+}

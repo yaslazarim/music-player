@@ -6,6 +6,7 @@ const play = document.querySelector('.button-player')
 const previous = document.querySelector('.previous')
 const next = document.querySelector('.next')
 const currentProgressBar = document.querySelector('.current-progress')
+const progressBarContainer = document.querySelector('.progress-bar-container')
 
 const mockingbird = {
     songName : 'Mockingbird',
@@ -80,9 +81,17 @@ function updateProgressBar(){
     currentProgressBar.style.setProperty('--progress', `${barWidth}%`)
 }
 
+function jumpTo(event){
+    const width = progressBarContainer.clientWidth;
+    const clickPosition = event.offsetX;
+    const jumpToTime = (clickPosition/width)* song.duration;
+    song.currentTime = jumpToTime;
+}
+
 initializeSong();
 
 play.addEventListener('click', playPauseDecider);
 previous.addEventListener('click', previousSong);
 next.addEventListener('click', nextSong)
 song.addEventListener('timeupdate', updateProgressBar)
+progressBarContainer.addEventListener('click', jumpTo)
