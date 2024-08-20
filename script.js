@@ -27,7 +27,7 @@ const ninguem = {
 }
 
 let isPlaying = false;
-const playlist = [mockingbird, saudadesDoTempo, ninguem];
+const originalPlaylist = [mockingbird, saudadesDoTempo, ninguem];
 let index = 0;
 
 function playSong(){
