@@ -20,3 +20,7 @@
 .button-player{
     font-size: 4em;
 }
+
+.button-active{
+    color: rgb(2, 102, 2);
+}

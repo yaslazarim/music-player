@@ -7,6 +7,7 @@ const previous = document.querySelector('.previous')
 const next = document.querySelector('.next')
 const currentProgressBar = document.querySelector('.current-progress')
 const progressBarContainer = document.querySelector('.progress-bar-container')
+const shuffleButton = document.querySelector('.button-shuffle')
 
 const mockingbird = {
     songName : 'Mockingbird',
@@ -27,7 +28,9 @@ const ninguem = {
 }
 
 let isPlaying = false;
+let isShuffled = false;
 const originalPlaylist = [mockingbird, saudadesDoTempo, ninguem];
+let sortedPlaylist = [...originalPlaylist];
 let index = 0;
 
 function playSong(){
@@ -54,15 +57,15 @@ function playPauseDecider(){
 }
 
 function initializeSong(){
-    cover.src = `img/${playlist[index].file}.jpg`;
-    song.src = `songs/${playlist[index].file}.mp3`;
-    songName.innerText = playlist[index].songName;
-    artistName.innerText = playlist[index].artist;
+    cover.src = `img/${sortedPlaylist[index].file}.jpg`;
+    song.src = `songs/${sortedPlaylist[index].file}.mp3`;
+    songName.innerText = sortedPlaylist[index].songName;
+    artistName.innerText = sortedPlaylist[index].artist;
 }
 
 function previousSong(){
     if(index === 0){
-        index = playlist.length -1;
+        index = sortedPlaylist.length -1;
     }
     else{
         index -= 1;
@@ -72,7 +75,7 @@ function previousSong(){
 }
 
 function nextSong(){
-    if(index === playlist.length -1){
+    if(index === sortedPlaylist.length -1){
         index = 0;
     }
     else{
@@ -94,6 +97,14 @@ function jumpTo(event){
     song.currentTime = jumpToTime;
 }
 
+function shuffleButtonClicked(){
+    if(isShuffled === false){
+        isShuffled = true;
+        shuffleArray(sortedPlaylist);
+        shuffleButton.classList.add('button-active')
+    }
+}
+
 initializeSong();
 
 play.addEventListener('click', playPauseDecider);
@@ -101,3 +112,4 @@ previous.addEventListener('click', previousSong);
 next.addEventListener('click', nextSong)
 song.addEventListener('timeupdate', updateProgressBar)
 progressBarContainer.addEventListener('click', jumpTo)
+shuffleButton.addEventListener('click', shuffleButtonClicked)
