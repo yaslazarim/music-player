@@ -27,9 +27,15 @@ const ninguem = {
     file : 'ninguem'
 }
 
+const loveAndHate = {
+    songName : 'Love & Hate',
+    artist : 'Michael Kiwanuka',
+    file : 'love-and-hate'
+}
+
 let isPlaying = false;
 let isShuffled = false;
-const originalPlaylist = [mockingbird, saudadesDoTempo, ninguem];
+const originalPlaylist = [mockingbird, saudadesDoTempo, ninguem, loveAndHate];
 let sortedPlaylist = [...originalPlaylist];
 let index = 0;
 
