@@ -20,8 +20,14 @@ const saudadesDoTempo = {
     file : 'saudades-do-tempo'
 }
 
+const ninguem = {
+    songName : 'Ninguém',
+    artist : 'Fran e Chico Chico ',
+    file : 'ninguem'
+}
+
 let isPlaying = false;
-const playlist = [mockingbird, saudadesDoTempo];
+const playlist = [mockingbird, saudadesDoTempo, ninguem];
 let index = 0;
 
 function playSong(){
