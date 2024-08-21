@@ -1,14 +1,16 @@
 const songName = document.querySelector('.song-name');
-const artistName = document.querySelector('.artist-name')
-const song = document.querySelector('.audio')
-const cover = document.querySelector('.cover')
-const play = document.querySelector('.button-player')
-const previous = document.querySelector('.previous')
-const next = document.querySelector('.next')
-const currentProgressBar = document.querySelector('.current-progress')
-const progressBarContainer = document.querySelector('.progress-bar-container')
-const shuffleButton = document.querySelector('.button-shuffle')
-const repeatButton = document.querySelector('.button-repeat')
+const artistName = document.querySelector('.artist-name');
+const song = document.querySelector('.audio');
+const cover = document.querySelector('.cover');
+const play = document.querySelector('.button-player');
+const previous = document.querySelector('.previous');
+const next = document.querySelector('.next');
+const currentProgressBar = document.querySelector('.current-progress');
+const progressBarContainer = document.querySelector('.progress-bar-container');
+const shuffleButton = document.querySelector('.button-shuffle');
+const repeatButton = document.querySelector('.button-repeat');
+const songTime = document.querySelector('.song-time');
+const totalSongTime = document.querySelector('.total-song-time');
 
 const mockingbird = {
     songName : 'Mockingbird',
@@ -93,9 +95,10 @@ function nextSong(){
     playSong();
 }
 
-function updateProgressBar(){
+function updateProgress(){
     const barWidth = (song.currentTime/song.duration)*100;
     currentProgressBar.style.setProperty('--progress', `${barWidth}%`)
+    songTime.innerText = toHHMMSS(song.currentTime);
 }
 
 function jumpTo(event){
@@ -150,13 +153,26 @@ function nextOrRepeat(){
     }
 }
 
+function toHHMMSS(originalNumber){
+    let hours = Math.floor(originalNumber / 3600);
+    let min = Math.floor((originalNumber - hours * 3600)/60);
+    let secs = Math.floor(originalNumber - hours * 3600 - min * 60);
+
+    return `${hours.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
+
+function updateTotalSongTime(){
+    totalSongTime.innerText = toHHMMSS(song.duration);
+}
+
 initializeSong();
 
 play.addEventListener('click', playPauseDecider);
 previous.addEventListener('click', previousSong);
 next.addEventListener('click', nextSong);
-song.addEventListener('timeupdate', updateProgressBar);
+song.addEventListener('timeupdate', updateProgress);
 song.addEventListener('ended', nextOrRepeat);
+song.addEventListener('loadedmetadata', updateTotalSongTime);
 progressBarContainer.addEventListener('click', jumpTo);
 shuffleButton.addEventListener('click', shuffleButtonClicked);
 repeatButton.addEventListener('click', repeatButtonClicked);
