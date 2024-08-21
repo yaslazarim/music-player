@@ -12,6 +12,12 @@
 }
 
 .progress-bar-container{
-    padding-bottom: 20px;
     cursor: pointer;
+}
+
+.time-song-container{
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-top: 5px;
 }
