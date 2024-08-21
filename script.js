@@ -8,6 +8,7 @@ const next = document.querySelector('.next')
 const currentProgressBar = document.querySelector('.current-progress')
 const progressBarContainer = document.querySelector('.progress-bar-container')
 const shuffleButton = document.querySelector('.button-shuffle')
+const repeatButton = document.querySelector('.button-repeat')
 
 const mockingbird = {
     songName : 'Mockingbird',
@@ -35,6 +36,7 @@ const loveAndHate = {
 
 let isPlaying = false;
 let isShuffled = false;
+let repeatOn = false;
 const originalPlaylist = [mockingbird, saudadesDoTempo, ninguem, loveAndHate];
 let sortedPlaylist = [...originalPlaylist];
 let index = 0;
@@ -128,6 +130,17 @@ function shuffleButtonClicked(){
     }
 }
 
+function repeatButtonClicked(){
+    if(repeatOn === false){
+        repeatOn = true;
+        repeatButton.classList.add('button-active')
+    }
+    else{
+        repeatOn = false;
+        repeatButton.classList.remove('button-active')
+    }
+}
+
 initializeSong();
 
 play.addEventListener('click', playPauseDecider);
@@ -136,3 +149,4 @@ next.addEventListener('click', nextSong)
 song.addEventListener('timeupdate', updateProgressBar)
 progressBarContainer.addEventListener('click', jumpTo)
 shuffleButton.addEventListener('click', shuffleButtonClicked)
+repeatButton.addEventListener('click', repeatButtonClicked)
