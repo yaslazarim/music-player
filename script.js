@@ -44,7 +44,7 @@ const loveAndHate = {
 let isPlaying = false;
 let isShuffled = false;
 let repeatOn = false;
-const originalPlaylist = [mockingbird, saudadesDoTempo, ninguem, loveAndHate];
+const originalPlaylist = JSON.parse(localStorage.getItem('playlist')) ?? [mockingbird, saudadesDoTempo, ninguem, loveAndHate];
 let sortedPlaylist = [...originalPlaylist];
 let index = 0;
 
@@ -192,6 +192,7 @@ function likeButtonClicked(){
         sortedPlaylist[index].liked = false;
     }
     likeButtonRender()
+    localStorage.setItem('playlist', JSON.stringify(originalPlaylist));
 }
 
 initializeSong();
