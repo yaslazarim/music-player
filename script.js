@@ -3,6 +3,7 @@ const artistName = document.querySelector('.artist-name');
 const song = document.querySelector('.audio');
 const cover = document.querySelector('.cover');
 const play = document.querySelector('.button-player');
+const likeButton = document.querySelector('.like-button');
 const previous = document.querySelector('.previous');
 const next = document.querySelector('.next');
 const currentProgressBar = document.querySelector('.current-progress');
@@ -15,25 +16,29 @@ const totalSongTime = document.querySelector('.total-song-time');
 const mockingbird = {
     songName : 'Mockingbird',
     artist : 'Eminem',
-    file : 'mockingbird'
+    file : 'mockingbird',
+    liked : false,
 }
 
 const saudadesDoTempo = {
     songName : 'Saudades do tempo',
     artist : 'Maneva',
-    file : 'saudades-do-tempo'
+    file : 'saudades-do-tempo',
+    liked : false,
 }
 
 const ninguem = {
     songName : 'Ninguém',
     artist : 'Fran e Chico Chico ',
-    file : 'ninguem'
+    file : 'ninguem',
+    liked : false,
 }
 
 const loveAndHate = {
     songName : 'Love & Hate',
     artist : 'Michael Kiwanuka',
-    file : 'love-and-hate'
+    file : 'love-and-hate',
+    liked : false,
 }
 
 let isPlaying = false;
@@ -66,11 +71,25 @@ function playPauseDecider(){
     }
 }
 
+function likeButtonRender(){
+    if(sortedPlaylist[index].liked === true){
+        likeButton.querySelector('.bi').classList.remove('bi-suit-heart');
+        likeButton.querySelector('.bi').classList.add('bi-suit-heart-fill');
+        likeButton.classList.add('button-active');
+    }
+    else { 
+        likeButton.querySelector('.bi').classList.add('bi-suit-heart');
+        likeButton.querySelector('.bi').classList.remove('bi-suit-heart-fill');
+        likeButton.classList.remove('button-active');
+    }
+}
+
 function initializeSong(){
     cover.src = `img/${sortedPlaylist[index].file}.jpg`;
     song.src = `songs/${sortedPlaylist[index].file}.mp3`;
     songName.innerText = sortedPlaylist[index].songName;
     artistName.innerText = sortedPlaylist[index].artist;
+    likeButtonRender();
 }
 
 function previousSong(){
